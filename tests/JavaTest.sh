@@ -16,14 +16,11 @@
 
 echo Compile then run the Java test.
 
-testdir=$(readlink -fn `dirname $0`)
-thisdir=$(readlink -fn `pwd`)
+testdir=$(dirname $0)
 
-if [[ "$testdir" != "$thisdir" ]]; then
-	echo error: must be run from inside the ${testdir} directory
-	echo you ran it from ${thisdir}
-	exit 1
-fi
+cd ${testdir}
 
-javac -classpath ${testdir}/../java:${testdir}:${testdir}/namespace_test JavaTest.java
-java -classpath ${testdir}/../java:${testdir}:${testdir}/namespace_test JavaTest
+javac -classpath ../java:.:namespace_test JavaTest.java
+java -classpath ../java:.:namespace_test JavaTest
+
+cd - > /dev/null
