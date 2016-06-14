@@ -25,12 +25,14 @@ PY34 = sys.version_info[0:2] >= (3, 4)
 
 if PY3:
     string_types = (str,)
+    binary_type = bytes
     binary_types = (bytes,bytearray)
     range_func = range
     memoryview_type = memoryview
     struct_bool_decl = "?"
 else:
     string_types = (unicode,)
+    binary_type = str
     if PY26 or PY27:
         binary_types = (str,bytearray)
     else:
